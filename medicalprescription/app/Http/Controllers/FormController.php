@@ -20,9 +20,11 @@ class FormController extends Controller
         $patient->contact = $request->input('contact');
         $patient->dob = $request->input('dob');
         $patient->address = $request->input('address');
-        $patient->password = $request->input('password');
-        $patient->confirmPassword = $request->input('confirmPassword');
+        $patient->password = bcrypt($request->input('password')); 
+        $patient->confirmPassword = bcrypt($request->input('confirmPassword'));
         $patient->save();
+
+        return redirect()->route('prescription.upload');
     }
 
     public function login(Request $request)
@@ -32,8 +34,8 @@ class FormController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('/');
+        if (Auth::attempt($credentials)){
+            return redirect()->route('prescription.upload');
         }
         
         return back()->withErrors(['email' => 'Invalid credentials']);

@@ -48,13 +48,75 @@
       </select>
     </div>
 
-    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
+    <button type="submit" id="submitBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
 
   </form>
 
 </div>
 
+<div id="successModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Prescription uploaded successfully</p>
+  </div>
+</div>
+
+<div id="errorModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Please fill all fields</p>
+  </div>
+</div>
+
+<style>
+  .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; 
+    height: 20%;
+    border-radius: 5px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
+
 <script>
+  function openModal(modalId) {
+    var modal = document.getElementById(modalId);
+    modal.style.display = "block";
+  }
+
+  function closeModal(modalId) {
+    var modal = document.getElementById(modalId);
+    modal.style.display = "none";
+  }
+
   document.getElementById('prescription').addEventListener('change', function(event) {
     var files = event.target.files;
     var previewContainer = document.getElementById('imagePreview');
@@ -87,12 +149,44 @@
     if (fileInput.files.length > 5) {
       alert('You can upload a maximum of 5 images.');
       event.preventDefault();
+    } else {
+      if (validateForm()) {
+        openModal('successModal');
+      } else {
+        openModal('errorModal');
+        event.preventDefault();
+      }
     }
   });
+
+  document.querySelectorAll(".close").forEach(function(closeButton) {
+    closeButton.onclick = function() {
+      closeModal(this.dataset.modalId);
+    }
+  });
+
+  window.onclick = function(event) {
+    var modals = document.querySelectorAll(".modal");
+    modals.forEach(function(modal) {
+      if (event.target == modal) {
+        closeModal(modal.id);
+      }
+    });
+  }
+
+  function validateForm() {
+    var patientName = document.getElementsByName("patientName")[0].value;
+    var prescription = document.getElementById("prescription").files.length;
+    var notes = document.getElementsByName("notes")[0].value;
+    var deliveryAddress = document.getElementsByName("deliveryAddress")[0].value;
+    var deliveryTime = document.getElementsByName("deliveryTime")[0].value;
+
+    if (patientName === '' || prescription === 0 || notes === '' || deliveryAddress === '' || deliveryTime === 'Select a time slot') {
+      return false;
+    } else {
+      return true;
+    }
+  }
 </script>
-
-
-
-
 </div>
 @endsection

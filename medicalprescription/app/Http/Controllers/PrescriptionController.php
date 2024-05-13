@@ -28,6 +28,7 @@ class PrescriptionController extends Controller
         $prescription->deliveryTime = $request->input('deliveryTime');
         $prescription->save();
     
-        return redirect()->back()->with('success', 'Prescription uploaded successfully');
+        
+        return redirect()->route('prescription.upload')->with('success', 'Prescription uploaded successfully');
     }    
 }
