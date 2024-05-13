@@ -23,7 +23,6 @@ class FormController extends Controller
         $patient->password = $request->input('password');
         $patient->confirmPassword = $request->input('confirmPassword');
         $patient->save();
-
     }
 
     public function login(Request $request)
@@ -34,11 +33,9 @@ class FormController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
             return redirect()->intended('/');
         }
-
-        // Authentication failed...
+        
         return back()->withErrors(['email' => 'Invalid credentials']);
     }
 }

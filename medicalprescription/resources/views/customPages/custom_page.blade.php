@@ -6,7 +6,12 @@
 
   <h2 class="text-xl font-semibold mb-4">Prescription Upload Form</h2>
 
-  <form id="uploadForm">
+  <form id="uploadForm" method="POST" action="{{route ('prescription.submit')}}" enctype="multipart/form-data">
+  @csrf
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700">Patient Name:</label>
+      <input type="text" name="patientName" rows="3" class="mt-1 px-3 py-2 border border-gray-300 rounded-md block w-full"></input>
+    </div>
 
     <div class="mb-4">
       <label class="block text-sm font-medium text-gray-700">Upload Prescription:</label>
@@ -21,16 +26,25 @@
 
     <div class="mb-4">
       <label class="block text-sm font-medium text-gray-700">Delivery Address:</label>
-      <input type="text" name="address" class="mt-1 px-3 py-2 border border-gray-300 rounded-md block w-full">
+      <input type="text" name="deliveryAddress" class="mt-1 px-3 py-2 border border-gray-300 rounded-md block w-full">
     </div>
 
     <div class="mb-4">
       <label class="block text-sm font-medium text-gray-700">Delivery Time:</label>
-      <select name="delivery-time" class="mt-1 px-3 py-2 border border-gray-300 rounded-md block w-full">
+      <select name="deliveryTime" class="mt-1 px-3 py-2 border border-gray-300 rounded-md block w-full">
         <option>Select a time slot</option>
+        <option>6:00 AM - 8:00 AM</option>
+        <option>8:00 AM - 10:00 AM</option>
         <option>10:00 AM - 12:00 PM</option>
         <option>12:00 PM - 2:00 PM</option>
         <option>2:00 PM - 4:00 PM</option>
+        <option>4:00 PM - 6:00 PM</option>
+        <option>6:00 PM - 8:00 PM</option>
+        <option>8:00 PM - 10:00 PM</option>
+        <option>10:00 PM - 12:00 AM</option>
+        <option>12:00 AM - 2:00 AM</option>
+        <option>2:00 AM - 4:00 AM</option>
+        <option>4:00 AM - 6:00 AM</option>
       </select>
     </div>
 
