@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AuthenticatePatient;
 
 Route::get('/', function () {
-    return view('layout');
+    return view('dashboard');
 });
 
 /* Customer Login */
