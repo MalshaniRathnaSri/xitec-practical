@@ -9,7 +9,11 @@
 </head>
 <body>
     <div class="container">
+        @include('_admin.admin_nav')
+
         @yield('content')
+
     </div>
+   
 </body>
 </html>
