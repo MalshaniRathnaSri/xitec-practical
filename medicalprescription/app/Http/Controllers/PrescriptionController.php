@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class PrescriptionController extends Controller
 {
     public function show(){
-        return view('customPages.custom_page');
+        return view('customPages.customer_profile');
     }
 
     public function prescriptionStore(Request $request){

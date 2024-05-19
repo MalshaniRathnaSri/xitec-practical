@@ -25,4 +25,4 @@ Route::get('/admin/registration',[AdminController::class,'registrationShow'])->n
 ROute::post('/admin/registration',[AdminController::class,'adminRegistration'])->name('admin.registration.store');
 Route::get('/admin/prescription/preview',[AdminController::class,'index'])->name('admin.prescription.preview');
 Route::get('/admin/prescription/preview/{image}', [AdminController::class, 'prescriptionQuotation'])->name('admin.prescription.previewImage');
-Route::post('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
