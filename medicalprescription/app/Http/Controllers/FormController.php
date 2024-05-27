@@ -13,12 +13,11 @@ class FormController extends Controller
         return view('pages.forms');
     }
 
-    public function customerProfile(){
+    public function customerProfile()
+    {
         $user = Auth::user();
-        
-        return view('customPages.customer_profile',['user'=>$user]);
+        return view('customPages.customer_profile', ['user' => $user]);
     }
-
     public function patientDataStore(Request $request){
         $patient = new PatientModel();
         $patient->firstName = $request->input('firstName');

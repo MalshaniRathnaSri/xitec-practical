@@ -13,8 +13,12 @@ Route::get('/', function () {
 /* Customer Login */
 Route::get('/customer/login',[FormController::class,'show'])->name('customer.login');
 Route::post('/patient/registration',[FormController::class,'patientDataStore'])->name('patient.registration');
-Route::post('/customer/login', [FormController::class, 'login'])->name('login')->middleware(AuthenticatePatient::class);
-Route::get('/customer/profile',[FormController::class,'customerProfile'])->name('customerProfile');
+Route::post('/login', [FormController::class, 'login'])->name('login');
+Route::get('/customer-profile', [FormController::class, 'customerProfile'])
+    ->name('customerProfile')
+    ->middleware('auth.patient');
+
+
 
 /* Prescription Upload */
 // Route::get('/prescription/upload', [PrescriptionController::class,'show'])->name('prescription.upload');  

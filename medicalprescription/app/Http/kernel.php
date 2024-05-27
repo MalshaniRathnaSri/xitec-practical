@@ -25,7 +25,6 @@ class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'web' => [
             // Add middleware for web routes here
-            \App\Http\Middleware\AuthenticatePatient::class,
 
         ],
         'api' => [
