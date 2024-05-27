@@ -14,6 +14,6 @@ class AuthenticatePatient
             return $next($request);
         }
 
-        return redirect()->route('prescription.upload');
+        return redirect()->route('customerProfile');
     }
 }

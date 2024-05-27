@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class PrescriptionController extends Controller
 {
-    public function show(){
-        return view('customPages.customer_profile');
-    }
+    // public function show(){
+    //     return view('customPages.customer_profile');
+    // }
 
     public function prescriptionStore(Request $request){
         $file = $request->file('prescription');

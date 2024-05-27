@@ -14,9 +14,10 @@ Route::get('/', function () {
 Route::get('/customer/login',[FormController::class,'show'])->name('customer.login');
 Route::post('/patient/registration',[FormController::class,'patientDataStore'])->name('patient.registration');
 Route::post('/customer/login', [FormController::class, 'login'])->name('login')->middleware(AuthenticatePatient::class);
+Route::get('/customer/profile',[FormController::class,'customerProfile'])->name('customerProfile');
 
 /* Prescription Upload */
-Route::get('/prescription/upload', [PrescriptionController::class,'show'])->name('prescription.upload');
+// Route::get('/prescription/upload', [PrescriptionController::class,'show'])->name('prescription.upload');  
 Route::post('/prescriptions/upload', [PrescriptionController::class,'prescriptionStore'])->name('prescription.submit');
 
 /* Admin Login */

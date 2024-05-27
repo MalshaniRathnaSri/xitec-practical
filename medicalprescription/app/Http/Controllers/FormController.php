@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PatientModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class FormController extends Controller
 {
     public function show(){
         return view('pages.forms');
+    }
+
+    public function customerProfile(){
+        $user = Auth::user();
+        
+        return view('customPages.customer_profile',['user'=>$user]);
     }
 
     public function patientDataStore(Request $request){
@@ -35,7 +42,7 @@ class FormController extends Controller
         ]);
 
         if (Auth::attempt($credentials)){
-            return redirect()->route('prescription.upload');
+            return redirect()->route('customPages.customer_profile');
         }
         
         return back()->withErrors(['email' => 'Invalid credentials']);

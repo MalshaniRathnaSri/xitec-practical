@@ -12,7 +12,7 @@
         <div>
             <div class="font-bold text-xl">Contact Information</div>
             <div>
-                Name: 
+                Name: {{$user->firstName}}
             </div>
             <div>
                 Email:
